@@ -38,6 +38,7 @@ def scanDani(y, worldRecord, img):
 
 
 def tracking():
+    
     while True:
 
         # Get the image from the camera
