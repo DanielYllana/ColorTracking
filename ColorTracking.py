@@ -8,15 +8,17 @@ x = 0
 y = 0
 
 # Set RGB variables
+# If you want to change the color its looking for just change this 3 values
 red1 = 0
 green1 = 0
 blue1 = 255
 
 
-# Scan width in image
+# Scan the hieght of image in the for loop looking for the most similar color
 def scanDani(y, worldRecord, img):
     similarX = -1
-
+    
+    # If your webcam has another height change 480 to the height of your image
     for x in range(1, 480, 6):
 
         # Get Pixel by X and Y
@@ -26,7 +28,7 @@ def scanDani(y, worldRecord, img):
         green2 = pixel[1]
         red2 = pixel[2]
 
-        # Find distance
+        # Find distance between the pixel value and the color you are looking for
         distance = abs(red1 - red2) + abs(green1 - green2) + abs(blue1 - blue2)
 
         # Find the most similar color
@@ -46,9 +48,11 @@ def tracking():
 
         # Setting up world record
         worldRecord = 500
-
-        # Scan height in image
+        
         finalX = 0
+        
+        # Scan the width of the image
+        # If your webcam has another width change 640 to the width of your image
         for i in range(0, 640, 6):
             x, worldRecord = scanDani(i, worldRecord, img)
             if x >= 0:
@@ -58,7 +62,7 @@ def tracking():
         # Draw circle in position
         cv2.circle(img, (finalY, finalX), 25, (0, 255, 0), 3)
 
-        # Show Image
+        # Display frame
         cv2.imshow("img", img)
 
         # Break Loop
